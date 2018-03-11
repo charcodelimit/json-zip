@@ -7,14 +7,15 @@
 ;;; DESCRIPTION
 ;;;  Unit Tests for json-zip
 ;;;
+;;;  (nst:nst-cmd :run-package #:json-zip-tests)
 ;;;
 ;;; Author: Christian Hofmann-Fuchs
 ;;;
 ;;; Created: Mo Sep  7 20:16:58 2015 (+0200)
 ;;;
-;;; Last-Updated: Do Dez 31 13:57:58 2015 (+0100)
+;;; Last-Updated: So Mär 11 09:30:00 2018 (+0100)
 ;;;           By: Christian Hofmann-Fuchs
-;;;           Update #: 898
+;;;           Update #: 900
 ;;;
 ;;; Copyright (C) 2015, Christian Hofmann-Fuchs. All rights reserved.
 ;;;
@@ -28,6 +29,11 @@
 ;;; conditions:
 ;;;
 ;;; The above copyright notice and this permission notice shall be
+;;; included in all copies or substantial portions of the Software.
+;;;
+;;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+;;; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+;;; OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 ;;; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
 ;;; HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILIpTY,
 ;;; WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
@@ -510,9 +516,6 @@
   (nst:def-test test-threading-with-filters
     (:equal '(:label :width :height :source :url :media))
     (reduce #'union (zip-> json-tree-location :size #'subtree-keys)))
-  (nst:def-test test-threading-text-value-filter
-      (:equal '(:label))
-    (zip-> json-tree-location "Medium 640" #'subtree-key))
   (nst:def-test test-threading-text-value-filter
       (:equal '(:label))
     (zip-> json-tree-location "Medium 640" #'subtree-key))
