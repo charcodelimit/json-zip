@@ -18,5 +18,10 @@ install:
 
 script:
   - cl -e '(ql:quickload :json-zip-test)
-           (unless (nst:nst-cmd :run-package :json-zip-tests)
+           (nst:nst-cmd :run-package :json-zip-tests)
+           (unless (= (reduce
+                       (lambda (x y) (+ x y))
+                       (loop :for result :being :the :hash-value :of nst::+results-record+
+                             :collect (nst::check-result-passing result)))
+                      (hash-table-count nst::+results-record+))
              (uiop:quit 1))'
