@@ -1,5 +1,7 @@
 # json-zip
 
+[![Build Status](https://www.travis-ci.org/charcodelimit/json-zip.svg?branch=master)](https://www.travis-ci.org/charcodelimit/json-zip)
+
 Filtering of tree-like Datastructures
 
 Features:

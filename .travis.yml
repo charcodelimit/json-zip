@@ -1,4 +1,5 @@
 language: lisp
+sudo: required
 
 env:
   matrix:
@@ -17,7 +18,5 @@ install:
 
 script:
   - cl -e '(ql:quickload :json-zip-test)
-           (unless (nst:nst-cmd :run-package #:json-zip-tests)
+           (unless (nst:nst-cmd :run-package :json-zip-tests)
              (uiop:quit 1))'
-
-sudo: required
