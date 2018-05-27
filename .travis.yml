@@ -10,11 +10,6 @@ env:
     - LISP=clisp
     - LISP=clisp32
 
-matrix:
-  allow_failures:
-    - env: LISP=clisp
-    - env: LISP=clisp32
-
 install:
     - curl -L https://github.com/luismbo/cl-travis/raw/master/install.sh | sh
     - git clone https://github.com/jphmrst/cl-nst.git ~/lisp/cl-nst
@@ -23,8 +18,8 @@ script:
   - cl -e '(ql:quickload :json-zip-test)
            (nst:nst-cmd :run-package :json-zip-tests)
            (unless (= (reduce
-                       (lambda (x y) (+ x y))
-                       (loop :for result :being :the :hash-value :of nst::+results-record+
+                       (function +)
+                       (loop :for result :being :the :hash-values :of nst::+results-record+
                              :collect (nst::check-result-passing result)))
                       (hash-table-count nst::+results-record+))
              (uiop:quit 1))'
