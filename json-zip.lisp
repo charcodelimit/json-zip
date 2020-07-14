@@ -15,9 +15,9 @@
 ;;;
 ;;; Created: So Aug 30 22:05:27 2015 (+0200)
 ;;;
-;;; Last-Updated: Do Dez 31 13:31:41 2015 (+0100)
+;;; Last-Updated: Mo Jul 13 21:18:32 2020 (+0200)
 ;;;           By: Christian Hofmann-Fuchs
-;;;           Update #: 1338
+;;;           Update #: 1354
 ;;;
 ;;; Copyright (C) 2015, Christian Hofmann-Fuchs. All rights reserved.
 ;;;
@@ -244,6 +244,7 @@ a.k.a 'Threading' (Clojure)"
            #:key-eq
            #:subtree-key
            #:subtree-value
+           #:subtree-text
            #:num-value
            #:num-value-equal
            #:text-value
@@ -462,6 +463,14 @@ The filter function takes a location as argument and returns a list of zippers, 
   `(let ((,var (subtree ,loc)))
      (when (and (consp ,var) (not (listp (cdr ,var))))
          ,form)))
+
+;; (subtree-text (make-location "a")) -> "a"
+(defun subtree-text (loc)
+  "RETURNs the VALUE of the subtree-node pointed at by the location LOC as string"
+  (let ((value (subtree loc)))
+    (if (stringp value)
+        value
+        (write-to-string value))))
 
 ;; (subtree-value (make-location '(WIDTH . "240"))) -> "240"
 (defun subtree-value (loc)

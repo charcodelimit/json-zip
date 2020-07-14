@@ -13,9 +13,9 @@
 ;;;
 ;;; Created: Mo Sep  7 20:16:58 2015 (+0200)
 ;;;
-;;; Last-Updated: So Mär 11 09:30:00 2018 (+0100)
+;;; Last-Updated: Mo Jul 13 21:20:18 2020 (+0200)
 ;;;           By: Christian Hofmann-Fuchs
-;;;           Update #: 900
+;;;           Update #: 902
 ;;;
 ;;; Copyright (C) 2015, Christian Hofmann-Fuchs. All rights reserved.
 ;;;
@@ -484,11 +484,17 @@
   (nst:def-test test-subtree-value-text-1
       (:eq :URL)
     (subtree-key (first (funcall (text-value-equal "http://nodejs.org")
-                              (make-location json-nested-subtree)))))
+                                 (make-location json-nested-subtree)))))
   (nst:def-test test-subtree-value-number-1
       (:eq :ID)
     (subtree-key (first (funcall (num-value-equal 2)
-                              (make-location json-nested-subtree))))))
+                                 (make-location json-nested-subtree)))))
+  (nst:def-test test-subtree-text-1
+      (:equal "green")
+    (subtree-text (make-location "green")))
+  (nst:def-test test-subtree-text-2
+      (:equal "255")
+    (subtree-text (make-location 255))))
 
 (nst:def-test-group test-chained-filters (filtered-values-fixture)
   (:documentation "Tests chaining of JSON specific filter predicates")
