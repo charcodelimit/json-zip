@@ -10,6 +10,10 @@ env:
     - LISP=clisp
     - LISP=clisp32
 
+matrix:
+  allow_failures:
+    - env: LISP=ccl32
+
 install:
     - curl -L https://github.com/luismbo/cl-travis/raw/master/install.sh | sh
     - git clone https://github.com/jphmrst/cl-nst.git ~/lisp/cl-nst
